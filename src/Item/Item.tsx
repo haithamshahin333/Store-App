@@ -1,5 +1,5 @@
 import Button from '@material-ui/core/Button';
-import { type } from 'os';
+// import { type } from 'os';
 //Types
 import { CartItemType } from '../App';
 //Styles
