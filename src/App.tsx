@@ -9,7 +9,9 @@ import Grid from "@material-ui/core/Grid";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Badge from "@material-ui/core/Badge";
 import { AppInsightsContext } from "@microsoft/applicationinsights-react-js";
-import { reactPlugin } from "./AppInsights";
+import { appInsights, reactPlugin } from "./AppInsights";
+
+import {BrowserRouter, Link, Route, Routes} from 'react-router-dom';
 
 //Styles
 import { Wrapper, StyledButton} from './App.Styles';
@@ -42,6 +44,7 @@ const App = () => {
     items.reduce((ack: number, item) => ack + item.amount, 0);
 
   const handleAddToCart =(clickedItem: CartItemType) => {
+    appInsights.trackEvent({name: clickedItem.title});
     setCartItems(prev => {
       // 1. Is the item already added in the cart?
       const isItemInCart = prev.find(item => item.id === clickedItem.id)
@@ -74,32 +77,63 @@ const App = () => {
   if (isLoading) return <LinearProgress />;
   if (error) return <div> Something went wrong... </div>;
   
+  const Home = () => (
+    <div>
+        <h2>Home Page</h2>
+    </div>
+);
+
+const About = () => (
+    <div>
+        <h2>About Page</h2>
+    </div>
+);
+
+const Header = () => (
+    <ul>
+        <li>
+            <Link to="/home">Home</Link>
+        </li>
+        <li>
+            <Link to="/about">About</Link>
+        </li>
+    </ul>
+);
   
 
   return (
-    <AppInsightsContext.Provider value={reactPlugin}>
-      <Wrapper>
-        <Drawer anchor='right' open={cartOpen} onClose = {() => setCartOpen(false)}>
-          <Cart 
-            cartItems = {cartItems} 
-            addToCart = {handleAddToCart}
-            removeFromCart = {handleRemoveFromCart}
-            />
-        </Drawer>
-        <StyledButton onClick = {() => setCartOpen(true)}>
-          <Badge badgeContent={getTotalItems(cartItems)} color='error'>
-            <AddShoppingCartIcon/>
-          </Badge>
-        </StyledButton>
-        <Grid container spacing={3}>
-        {data?.map(item => (
-          <Grid item key={item.id} xs={12} sm={4}>
-            <Item item={item} handleAddToCart={handleAddToCart} />
+    <BrowserRouter>
+      <AppInsightsContext.Provider value={reactPlugin}>
+        <Wrapper>
+        <div>
+            <Header/>
+            <Routes>
+            <Route path="/home" element={<Home/>} />
+            <Route path="/about" element={<About/>} />
+            </Routes>
+          </div>
+          <Drawer anchor='right' open={cartOpen} onClose = {() => setCartOpen(false)}>
+            <Cart 
+              cartItems = {cartItems} 
+              addToCart = {handleAddToCart}
+              removeFromCart = {handleRemoveFromCart}
+              />
+          </Drawer>
+          <StyledButton onClick = {() => setCartOpen(true)}>
+            <Badge badgeContent={getTotalItems(cartItems)} color='error'>
+              <AddShoppingCartIcon/>
+            </Badge>
+          </StyledButton>
+          <Grid container spacing={3}>
+          {data?.map(item => (
+            <Grid item key={item.id} xs={12} sm={4}>
+              <Item item={item} handleAddToCart={handleAddToCart} />
+            </Grid>
+          ))}
           </Grid>
-        ))}
-        </Grid>
-      </Wrapper>
-    </AppInsightsContext.Provider>
+        </Wrapper>
+      </AppInsightsContext.Provider>
+    </BrowserRouter>
   );
 }
 
