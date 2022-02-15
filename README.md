@@ -1,9 +1,10 @@
 # App Insights Usage Analytics
 
-## References on Usage Analysis with App Insights
+## References on Usage Analysis and JS Setup with App Insights
 - https://docs.microsoft.com/en-us/azure/azure-monitor/app/javascript-react-plugin
 - https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics
 - https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-overview
+- https://github.com/microsoft/applicationinsights-js#telemetry-initializers
 
 ## References on Non-Functional Requirements with App Insights
 - https://docs.microsoft.com/en-us/azure/azure-monitor/app/data-retention-privacy
