@@ -1,3 +1,16 @@
+# App Insights Usage Analytics
+
+## References on Usage Analysis with App Insights
+- https://docs.microsoft.com/en-us/azure/azure-monitor/app/javascript-react-plugin
+- https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics
+- https://docs.microsoft.com/en-us/azure/azure-monitor/app/usage-overview
+
+## References on Non-Functional Requirements with App Insights
+- https://docs.microsoft.com/en-us/azure/azure-monitor/app/data-retention-privacy
+- https://docs.microsoft.com/en-us/azure/azure-monitor/app/separate-resources
+- https://docs.microsoft.com/en-us/azure/azure-monitor/app/sampling
+- https://azure.microsoft.com/en-us/pricing/details/monitor/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
