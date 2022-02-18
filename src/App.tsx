@@ -5,6 +5,7 @@ import Item from './Item/Item';
 import Cart from './Cart/Cart';
 import Drawer from '@material-ui/core/Drawer';
 import LinearProgress  from "@material-ui/core/LinearProgress";
+import Button from '@material-ui/core/Button'
 import Grid from "@material-ui/core/Grid";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Badge from "@material-ui/core/Badge";
@@ -112,6 +113,7 @@ const Header = () => (
             <Route path="/about" element={<About/>} />
             </Routes>
           </div>
+          <button type="button">Click Me!</button>
           <Drawer anchor='right' open={cartOpen} onClose = {() => setCartOpen(false)}>
             <Cart 
               cartItems = {cartItems} 
